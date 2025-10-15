@@ -1,25 +1,38 @@
+# ==========================
 # Gradle
+# ==========================
 .gradle/
 build/
 !gradle/wrapper/gradle-wrapper.jar
 
+# ==========================
 # IntelliJ IDEA
+# ==========================
 .idea/
 *.iws
 *.iml
 *.ipr
 out/
 
-# Kotlin cache
+# ==========================
+# Kotlin/Java
+# ==========================
 .kotlin/
 
-# ✅ Incluir explícitamente el código fuente
+# ==========================
+# ⚙️ Incluir explícitamente el código fuente
+# ==========================
 !src/**
+!**/src/main/**
+!**/src/test/**
 
-# Ignorar solo las carpetas de compilación dentro de src
+# ==========================
+# Ignorar solo carpetas de compilación dentro de src
+# ==========================
 !**/src/main/**/build/
 !**/src/test/**/build/
 !**/src/main/**/out/
 !**/src/test/**/out/
+
 
 
