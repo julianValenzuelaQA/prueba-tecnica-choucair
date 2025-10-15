@@ -1,0 +1,52 @@
+plugins {
+    id 'java-library'
+    id 'net.serenity-bdd.serenity-gradle-plugin' version '4.2.34'
+}
+
+sourceCompatibility = '21'
+targetCompatibility = '21'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+ext {
+    serenityVersion = '4.2.9'
+    poiVersion = '5.2.3'
+    slf4jVersion = '2.0.9'
+    webdriverManagerVersion = '5.9.2'
+    javafakerVersion = '1.0.2'
+}
+
+dependencies {
+
+    implementation "net.serenity-bdd:serenity-core:${serenityVersion}"
+    implementation "net.serenity-bdd:serenity-junit:${serenityVersion}"
+    implementation "net.serenity-bdd:serenity-screenplay:${serenityVersion}"
+    implementation "net.serenity-bdd:serenity-screenplay-webdriver:${serenityVersion}"
+    implementation "net.serenity-bdd:serenity-cucumber:${serenityVersion}"
+    implementation "net.serenity-bdd:serenity-ensure:${serenityVersion}"
+
+    implementation "io.cucumber:cucumber-java:7.18.1"
+    implementation "io.cucumber:cucumber-junit:7.18.1"
+
+    implementation "org.assertj:assertj-core:3.26.3"
+    implementation "org.apache.poi:poi:${poiVersion}"
+    implementation "org.apache.poi:poi-ooxml:${poiVersion}"
+    implementation 'io.github.cdimascio:dotenv-java:3.0.0'
+    implementation "com.github.javafaker:javafaker:1.0.2"
+
+    implementation "io.github.bonigarcia:webdrivermanager:${webdriverManagerVersion}"
+    implementation "org.seleniumhq.selenium:selenium-java:4.26.0"
+}
+
+test {
+    testLogging {
+        showStandardStreams = true
+        events "passed", "skipped", "failed"
+    }
+    systemProperties System.getProperties()
+    systemProperty "cucumber.filter.tags", System.getProperty("cucumber.filter.tags")
+    finalizedBy 'aggregate'
+}
